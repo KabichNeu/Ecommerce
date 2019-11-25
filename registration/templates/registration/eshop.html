@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset = 'utf-8'>
+    <title>
+        e-Shop
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel = "stylesheet" href = "">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    {%block body_block%}
+
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        
+            <a class="navbar-brand" href="{% url 'eshop'%}"><img src="static/images/logo1.jpg" width="30" height="30" class="d-inline-block align-top" alt="">  e~Shop</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+                  {% if user.is_authenticated %}
+                  
+                  <li class="nav-item active">
+                      <a class="nav-link" id='sign' href="{% url 'logout'%}">Logout <span class="sr-only">(current)</span></a>
+                  </li>
+                  
+                  {%else%}
+                  <li class="nav-item active">
+                      <a class="nav-link" id='sign' href="{% url 'registration:register'%}">Register <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active">
+                      <a class="nav-link" id='sign' href="{% url 'registration:user_login'%}">Signin <span class="sr-only">(current)</span></a>
+                  </li>
+                  {% endif %}
+                  <li class="nav-item active">
+                      <a class="nav-link" id = 'cart' href="#"><img src="static/images/cart1.jpg" width="30" height="30" class="d-inline-block align-top" alt=""> Cart <span class="sr-only">(current)</span></a>
+                  </li>
+                  
+              </ul>
+              
+            </div>
+          </nav>
+          
+          <nav class="navbar navbar-expand-md navbar-light bg-light">
+              <a class="navbar-brand" >Categories</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  
+                  
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Men's wear
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="base.html">Action</a>
+                      <a class="dropdown-item" href="base.html">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="base.html">Something else here</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Women's wear
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Electronic Devices
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Furnitures
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                          </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Cosmetics
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#">Action</a>
+                              <a class="dropdown-item" href="#">Another action</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                          </li>
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Automobiles
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                              </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Books
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href="#">Action</a>
+                                  <a class="dropdown-item" href="#">Another action</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                              </li>
+                </ul>
+              </div>
+    
+              </nav>
+    
+              <div class="spinner-grow text-primary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-secondary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-success" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-danger" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-warning" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-info" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-light" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-dark" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-secondary" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-danger" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-warning" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-info" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-dark" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-primary" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-secondary" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-success" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-danger" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-warning" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-info" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-light" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-dark" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-secondary" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-success" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-danger" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-warning" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-info" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      
+                      
+                                
+      </div>
+          
+      
+
+      
+      {%endblock%}
+</body>
+
+
+</html>
