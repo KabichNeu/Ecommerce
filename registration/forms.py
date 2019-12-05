@@ -57,8 +57,16 @@ class UserForm(forms.ModelForm):
     class Meta():
         model = User
         fields = ('firstname','lastname','username','email','password','verify_password')
+        
+        def __init__(self,*args,**kwargs):
+                super().__init__(*args,**kwargs)
+                self.fields['username'].label = 'Display Name'
+                self.fields['email'].label = "Email Address"
+
 
 class UserProfileInfoForm(forms.ModelForm):
     class Meta():
         model = UserProfileInfo
         fields = ('portfolio_site','profile_pic')
+
+           
