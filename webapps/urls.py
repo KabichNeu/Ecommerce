@@ -24,7 +24,7 @@ from django.conf.urls.static import static
 
 
  
-from products.views import (ProductFeaturedDetailView,ProductFeaturedListView,ProductListView,product_list_view,product_detail_view,ProductDetailView)
+from products.views import (ProductDetailSlugView,ProductFeaturedDetailView,ProductFeaturedListView,ProductListView,product_list_view,product_detail_view,ProductDetailView)
 
 
 urlpatterns = [
@@ -35,10 +35,13 @@ urlpatterns = [
     path('logout/',views.user_logout,name='logout'),
     path('special/',views.special,name='special '),
     path('feature/', ProductFeaturedListView.as_view()),
-    path('featured/(?P<pk>\d+)', ProductFeaturedDetailView.as_view()),
-    path('product/', ProductListView.as_view()),
-    path('products-fbv/',product_list_view),
-    re_path('product/(?P<pk>\d+)', ProductDetailView.as_view()),
-    re_path('products-fbv/(?P<pk>\d+)', product_detail_view),
+    re_path('featured/(?P<pk>\d+)/', ProductFeaturedDetailView.as_view()),
+    path('product/', include("products.urls")),
+
+    # path('product/', ProductListView.as_view()),
+    # path('products-fbv/',product_list_view),
+    # re_path('product/(?P<pk>\d+)/', ProductDetailView.as_view()),
+    # path('products/(?P<slug>[\w-]+)/',ProductDetailSlugView.as_view()),
+    # re_path('products-fbv/(?P<pk>\d+)/', product_detail_view),
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

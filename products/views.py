@@ -4,19 +4,21 @@ from django.views.generic import (View,TemplateView,ListView,DetailView,CreateVi
 from .models import Product
 # Create your views here.
 
+
+
 class ProductFeaturedListView(ListView):
     queryset=Product.objects.all()
     template_name = "products/list.html"
     def get_queryset(self,*args,**kwargs):
         request = self.request
-        return Product.objects.featured()
+        return Product.objects.all().featured()
 
 class ProductFeaturedDetailView(DetailView):
-    #queryset=Product.objects.all()
-    template_name = "products/detail.html"
+    queryset=Product.objects.all().featured()
+    template_name = "products/featured_detail.html"
     def get_queryset(self,*args,**kwargs):
         request = self.request
-        return Product.objects.featured()
+        return Product.objects.all().featured()
 
 
 
@@ -38,6 +40,25 @@ def product_list_view(request):
     }
     return render(request,"products/list.html",context)
 
+class ProductDetailSlugView(DetailView):
+    queryset=Product.objects.all()
+    template_name = "products/detail.html"
+    def get_object(self,*args,**kwargs):
+        request = self.request 
+        slug = self.kwargs.get('slug')
+        #instance= get_objects_or_404(Product,slug=slug,active = True)
+        try:
+            instance= Product.objects.get(slug=slug,active =True)
+        except Product.DoesNotExist:
+            raise Http404("Not found..")
+        except Product.MultipleObjectsReturned:
+            qs = Product.object.filter(slug=slug,active=True)
+            instance = qs.first()
+        except:
+            return Http404("Uhhhhh")
+        return instance
+
+
 class ProductDetailView(DetailView):
     queryset=Product.objects.all()
     template_name = "products/detail.html"
@@ -46,21 +67,21 @@ class ProductDetailView(DetailView):
         context = super(ProductDetailView,self).get_context_data(*args,**kwargs)
         return context
 
-    #def get_object(self,*args,**kwargs):
-    #    request = self.request
-    #    pk = self.kwargs.get('pk')
-    #    instance=Product.objects.get_by_id(pk)
-    #    if instance is None:
-    #        raise Http404("Product doesnt exist")
-    #    return instance
-    def get_queryset(self,*args,**kwargs):
+    def get_object(self,*args,**kwargs):
         request = self.request
         pk = self.kwargs.get('pk')
-        return Product.objects.filter(pk=pk)
+        instance=Product.objects.get_by_id(pk)
+        if instance is None:
+            raise Http404("Product doesnt exist")
+        return instance
+    #  def get_queryset(self,*args,**kwargs):
+    #      request = self.request
+    #      pk = self.kwargs.get('pk')
+    #      return Product.objects.filter(pk=pk)
 
 def product_detail_view(request,pk=None,*args,**kwargs):
     #instance=Product.objects.get(pk=pk)
-    instance=Product.objects.get_by_id(pk)
+    instance=Product.objects.get_by_id(pk=pk,featured=True)
     
     #qs =Product.objects.filter(id=pk)
     #if qs.exist() and qs.count() == 1 :
