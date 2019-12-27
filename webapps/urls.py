@@ -36,7 +36,7 @@ urlpatterns = [
     path('special/',views.special,name='special '),
     path('feature/', ProductFeaturedListView.as_view()),
     re_path('featured/(?P<pk>\d+)/', ProductFeaturedDetailView.as_view()),
-    path('product/', include("products.urls")),
+    path('product/', include("products.urls",namespace="products")),
 
     # path('product/', ProductListView.as_view()),
     # path('products-fbv/',product_list_view),

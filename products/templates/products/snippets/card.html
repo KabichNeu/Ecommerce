@@ -15,17 +15,18 @@
 </head>
 <body>
     {%load staticfiles%}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>{{ object.title }}<br/></h1>>
-                {{object.timestamp|timesince }}
-                {{ object.description|linebreaks }}<br/>
-                {{ object.price }}<br/>
-                <img src ="{{object.image.url}}" class="img-fluid"/>
-            </div>
+    <div class="card" style="width: 18rem;">
+        {%if instance.image %}
+        <a href="{{instance.get_absolute_url}}"></a>
+        <img src="{{instance.image.url}}" class="card-img-top" alt="{{instance.title}} logo">
+        {%endif%}
+        <div class="card-body">
+        <h5 class="card-title">{{instance.title}}</h5>
+        <p class="card-text">{{instance.description|linebreaks|truncatewords:15}}</p>
+        <a href="{{instance.get_absolute_url}}" class="btn btn-primary">View</a>
+        <a class="btn btn-warning"><h1>$</h1>{{instance.price}}</a>
+        <a href="{%url 'products:detail' slug=instance.slug %}" class="btn btn-Success">{{instance.title}}</a>
         </div>
-    </div>
-    
+      </div>
 </body>
 </html>
