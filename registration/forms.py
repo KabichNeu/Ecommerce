@@ -34,8 +34,8 @@ class FormName(forms.Form):
 class UserForm(forms.ModelForm):
     firstname = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
     lastname = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    password = forms.CharField(widget=forms.PasswordInput())
-    verify_password = forms.CharField(widget = forms.PasswordInput())
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    verify_password = forms.CharField(widget = forms.PasswordInput(attrs={'class':'form-control'}))
     botcatcher = forms.CharField(required = False,
                                 widget = forms.HiddenInput,
                                 validators =[validators.MaxLengthValidator(0)]
@@ -57,6 +57,7 @@ class UserForm(forms.ModelForm):
     class Meta():
         model = User
         fields = ('firstname','lastname','username','email','password','verify_password')
+        widgets={'username':forms.TextInput(attrs={'class':'form-control'}),'email':forms.TextInput(attrs={'class':'form-control'})}
         
         def __init__(self,*args,**kwargs):
                 super().__init__(*args,**kwargs)
@@ -68,5 +69,6 @@ class UserProfileInfoForm(forms.ModelForm):
     class Meta():
         model = UserProfileInfo
         fields = ('portfolio_site','profile_pic')
+        widget = {'portfolio_site':forms.TextInput(attrs={'class':'form-control'})}
 
            

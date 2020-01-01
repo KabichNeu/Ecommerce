@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 
 
 
- 
+from carts.views import cart_home
 from products.views import (ProductDetailSlugView,ProductFeaturedDetailView,ProductFeaturedListView,ProductListView,product_list_view,product_detail_view,ProductDetailView)
 
 
@@ -37,11 +37,8 @@ urlpatterns = [
     path('feature/', ProductFeaturedListView.as_view()),
     re_path('featured/(?P<pk>\d+)/', ProductFeaturedDetailView.as_view()),
     path('product/', include("products.urls",namespace="products")),
+    path('orders/',include('orders.urls')),
+    path('cart/',cart_home,name='cart'),
 
-    # path('product/', ProductListView.as_view()),
-    # path('products-fbv/',product_list_view),
-    # re_path('product/(?P<pk>\d+)/', ProductDetailView.as_view()),
-    # path('products/(?P<slug>[\w-]+)/',ProductDetailSlugView.as_view()),
-    # re_path('products-fbv/(?P<pk>\d+)/', product_detail_view),
-
+    
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
