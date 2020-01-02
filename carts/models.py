@@ -1,12 +1,13 @@
 from django.db import models
 from django.conf import settings
 from products.models import Product
+
 User = settings.AUTH_USER_MODEL
 
 class CartManager(models.Manager):
     def new(self,user=None):
         user_obj = None
-        if user is not None:
+        if not user:
             if user.is_authenticated():
                 user_obj = user 
 

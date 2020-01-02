@@ -7,7 +7,7 @@ def cart_create(user=None):
     return cart_obj
 
 def cart_home(request):
-    request.session['cart_id']= "12"
+    
     cart_id = request.session.get("cart_id",None)
     qs = Cart.objects.filter(id=cart_id)
     if qs.count()==1:
