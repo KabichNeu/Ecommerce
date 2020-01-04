@@ -1,18 +1,20 @@
+{% extends 'registration/eshop.html' %}
 {% load static %}
-
-
-{%block body_block%}
+{%block content%}
 
 <div class = 'container'>
      <h1>Please Login</h1>
      <form action ="{% url 'registration:user_login'%}" method ="post">
      {% csrf_token %}
+     <div class="form-group">
      <label for="username">Username:</label>>
      <input type = "text" name="username" placeholder="Enter Username">
-     
+     <Br/>
      <label for="password">Password:</label>
      <input type="password" name = "password">
-
+     </br>
      <input type= "submit" name="" value="Login">
+     </div>
+     
 </div>
 {%endblock%}

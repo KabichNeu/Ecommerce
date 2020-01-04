@@ -45,8 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
-    'orders.apps.OrdersConfig',
-    'carts',
+    
 ]
 
 MIDDLEWARE = [
@@ -155,3 +154,4 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 LOGIN_URL = '/registration/user_login'
+

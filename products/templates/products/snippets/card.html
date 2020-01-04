@@ -25,7 +25,6 @@
         <p class="card-text">{{instance.description|linebreaks|truncatewords:15}}</p>
         <a href="{{instance.get_absolute_url}}" class="btn btn-primary">View</a>
         <a class="btn btn-warning"><h1>$</h1>{{instance.price}}</a>
-        <a href="{%url 'products:detail' slug=instance.slug %}" class="btn btn-Success">{{instance.title}}</a>
         </div>
       </div>
 </body>

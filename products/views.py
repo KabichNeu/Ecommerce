@@ -1,7 +1,8 @@
 from django.shortcuts import render,get_object_or_404
 from django.views.generic import (View,TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView)
-
+from django.http import HttpResponse,Http404
 from .models import Product
+
 # Create your views here.
 
 
@@ -42,11 +43,14 @@ def product_list_view(request):
 
 class ProductDetailSlugView(DetailView):
     queryset=Product.objects.all()
+        
     template_name = "products/detail.html"
     def get_object(self,*args,**kwargs):
         request = self.request 
         slug = self.kwargs.get('slug')
         #instance= get_objects_or_404(Product,slug=slug,active = True)
+
+        
         try:
             instance= Product.objects.get(slug=slug,active =True)
         except Product.DoesNotExist:
@@ -92,7 +96,13 @@ def product_detail_view(request,pk=None,*args,**kwargs):
         raise Http404("Product doesnt exist")
 
     instance = get_object_or_404(Product,pk=pk)
+    
+
+
     context = {
-        'object': instance
+        'object': instance,
     }
-    return render(request,"products/detail.html",context)
+    return render(request,'products/detail.html',context)
+
+
+

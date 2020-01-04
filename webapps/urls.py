@@ -21,24 +21,20 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-
-
-from carts.views import cart_home
 from products.views import (ProductDetailSlugView,ProductFeaturedDetailView,ProductFeaturedListView,ProductListView,product_list_view,product_detail_view,ProductDetailView)
 
 
 urlpatterns = [
 
     path('admin/', admin.site.urls),
-    path('',views.eshop,name='eshop'),
+    path('about/',views.about,name='about'),
+    path('',ProductListView.as_view(),name='eshop'),
     path('registration/', include('registration.urls')),
     path('logout/',views.user_logout,name='logout'),
     path('special/',views.special,name='special '),
     path('feature/', ProductFeaturedListView.as_view()),
     re_path('featured/(?P<pk>\d+)/', ProductFeaturedDetailView.as_view()),
     path('product/', include("products.urls",namespace="products")),
-    path('orders/',include('orders.urls')),
-    path('cart/',cart_home,name='cart'),
-
+    
     
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
