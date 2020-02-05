@@ -26,6 +26,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '$@@mmmwo29gqya$-6ha58kf34n_*pj#bl#jpg2wwsalce)f)vm'
+
+
 STRIPE_SECRET_KEY = 'sk_live_KbKsHKIDFi0T2PjzgElpPvpC00VNCImWLX'
 STRIPE_PUBLISHABLE_KEY = 'pk_live_Qr5q9OGpU3aesnpAgW3Jktfc00ewDr3k2L'
 
@@ -47,8 +49,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
+    'cart',
+    
     
 ]
+
+CART_SESSION_ID = 'cart'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'webapps.urls'
 

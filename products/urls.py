@@ -2,7 +2,7 @@
 from django.urls import path,re_path
 from registration import views
 from django.conf import settings
-from products.views import ProductDetailSlugView,ProductListView
+from products.views import ProductDetailSlugView,ProductListView,charge
 
                         #    ,ProductFeaturedDetailView
                         #    ,ProductListView

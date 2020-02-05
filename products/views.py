@@ -1,12 +1,11 @@
+import stripe
+
 from django.shortcuts import render,get_object_or_404
 from django.views.generic import (View,TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView)
 from django.http import HttpResponse,Http404
 from .models import Product
 from django.conf import settings
 
-# Create your views here.
-
-stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 
@@ -65,11 +64,17 @@ class ProductDetailSlugView(DetailView):
             return Http404("Uhhhhh")
         return instance
 
-    def get_context_data(self,**kwargs):
-        context = super().get_context_data(**kwargs)
-        context['key'] = settings.STRIPE_PUBLISHABLE_KEY
-        return context
+    
 
+def charge(request): # new
+    if request.method == 'POST':
+        charge = stripe.Charge.create(
+            amount=500,
+            currency='usd',
+            description='A Django charge',
+            source=request.POST['stripeToken']
+        )
+        return render(request, 'charge.html')
 
 class ProductDetailView(DetailView):
     queryset=Product.objects.all()
@@ -112,14 +117,5 @@ def product_detail_view(request,pk=None,*args,**kwargs):
     }
     return render(request,'products/detail.html',context)
 
-#charge
-def charge(request):
-    if request.method =='POST':
-        charge = stripe.Charge.create(
-            currency = 'usd',
-            description = 'A Django Charge',
-            source = request.POST['stripeToken']
-        )
-        return render(request,'products/charge.html')
 
 

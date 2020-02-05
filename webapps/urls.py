@@ -35,6 +35,7 @@ urlpatterns = [
     path('feature/', ProductFeaturedListView.as_view()),
     re_path('featured/(?P<pk>\d+)/', ProductFeaturedDetailView.as_view()),
     path('product/', include("products.urls",namespace="products")),
+    path('cart/',include('cart.urls',namespace='cart')),
     
     
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -10,16 +10,7 @@
                  {{object.timestamp|timesince }}
                 </br>
             </br>
-                <span class="badge badge-pill badge-warning"><h2>${{ object.price }}</h2></span></br>
-                <form action="{% url 'charge' %}" method="post">
-                    {% csrf_token %}
-                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="{{ key }}"
-                        data-description="A Django Charge"
-                        data-amount="{{ object.price }}"
-                        data-locale="auto">
-                    </script>
-                </form>                    
+                <span class="badge badge-pill badge-warning"><h2>Rs.{{ object.price }}</h2></span></br>
                 <br/>
                 <img src ="{{object.image.url}}" class="img-fluid"/>                
                 {{ object.description|linebreaks }}<br/>
