@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap3',
     'cart',
+    'paypal.standard.ipn',
+    'payment',
     
     
 ]
@@ -66,7 +68,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
+# django-paypal settings 
+PAYPAL_RECEIVER_EMAIL = 'kabichneu@gmail.com' 
+PAYPAL_TEST = True 
 ROOT_URLCONF = 'webapps.urls'
 
 TEMPLATES = [

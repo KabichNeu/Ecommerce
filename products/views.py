@@ -1,13 +1,10 @@
-import stripe
 
 from django.shortcuts import render,get_object_or_404
 from django.views.generic import (View,TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView)
 from django.http import HttpResponse,Http404
 from .models import Product
 from django.conf import settings
-
-
-
+       
 
 class ProductFeaturedListView(ListView):
     queryset=Product.objects.all()
@@ -44,7 +41,6 @@ def product_list_view(request):
     return render(request,"products/list.html",context)
 
 class ProductDetailSlugView(DetailView):
-    queryset=Product.objects.all()
         
     template_name = "products/detail.html"
     def get_object(self,*args,**kwargs):
