@@ -25,11 +25,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$@@mmmwo29gqya$-6ha58kf34n_*pj#bl#jpg2wwsalce)f)vm'
+SECRET_KEY = ''
 
 
-STRIPE_SECRET_KEY = 'sk_live_KbKsHKIDFi0T2PjzgElpPvpC00VNCImWLX'
-STRIPE_PUBLISHABLE_KEY = 'pk_live_Qr5q9OGpU3aesnpAgW3Jktfc00ewDr3k2L'
+STRIPE_SECRET_KEY = ''
+STRIPE_PUBLISHABLE_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -69,7 +69,7 @@ MIDDLEWARE = [
 ]
 
 # django-paypal settings 
-PAYPAL_RECEIVER_EMAIL = 'kabichneu@gmail.com' 
+PAYPAL_RECEIVER_EMAIL = 'ABC@gmail.com' 
 PAYPAL_TEST = True 
 ROOT_URLCONF = 'webapps.urls'
 
